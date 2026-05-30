@@ -1,0 +1,38 @@
+public static int buscarPessoaPorNome(Pessoa[] v, int qtd, String nome) {
+        for (int i = 0; i < qtd; i++) {
+            if (v[i].nome.equalsIgnoreCase(nome)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public static int cadastrarPessoa(Pessoa[] v, int qtd) {
+        if (qtd >= v.length) {
+            System.out.println("Vetor cheio.");
+            return qtd;
+        }
+        Pessoa p = new Pessoa();
+        do {
+            System.out.print("Nome: ");
+            p.nome = sc.nextLine();
+
+            if (buscarPessoaPorNome(v, qtd, p.nome) != -1) {
+                System.out.println("Nome já cadastrado.");
+            }
+        } while (buscarPessoaPorNome(v, qtd, p.nome) != -1);
+
+        System.out.print("Idade: ");
+        p.idade = sc.nextInt();
+
+        System.out.print("Peso: ");
+        p.peso = sc.nextDouble();
+
+        System.out.print("Altura: ");
+        p.altura = sc.nextDouble();
+        sc.nextLine();
+
+        v[qtd] = p;
+
+        return qtd + 1;
+    }
